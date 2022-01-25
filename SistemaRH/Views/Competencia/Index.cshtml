@@ -1,0 +1,44 @@
+﻿@model List<SistemaRH.Models.Competencia>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Competencias</h1>
+</div>
+<p>
+    <a asp-action="Create">Agregar Departamento</a>
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Descripcion</th>
+            <th>Estado</th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+                <td>
+                    @if (item.Estado == true)
+                    {
+                        @Html.DisplayName("Activo")
+                    }
+                    else if (item.Estado == false)
+                    {
+                        @Html.DisplayName("Inactivo")
+                    }
+                </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+            </td>
+            </tr>
+        }
+    </tbody>
+</table>
