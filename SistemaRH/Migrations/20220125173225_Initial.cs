@@ -13,8 +13,8 @@ namespace SistemaRH.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Descripcion = table.Column<string>(type: "text", nullable: true),
-                    Estado = table.Column<short>(type: "bit", nullable: false)
+                    Descripcion = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    Estado = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
