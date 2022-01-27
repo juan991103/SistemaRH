@@ -16,17 +16,19 @@ namespace SistemaRH.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.13");
 
-            modelBuilder.Entity("SistemaRH.Data.Competencia", b =>
+            modelBuilder.Entity("SistemaRH.Models.Competencia", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("Descripcion")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
 
-                    b.Property<short>("Estado")
-                        .HasColumnType("bit");
+                    b.Property<bool>("Estado")
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("Id");
 
