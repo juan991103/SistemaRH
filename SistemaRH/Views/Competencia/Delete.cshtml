@@ -21,7 +21,11 @@
             @Html.DisplayNameFor(model => model.Estado)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Estado)
+            <div class="form-check form-check-success">
+                <label class="form-check-label">
+                    @Html.DisplayFor(model => model.Estado)
+                </label>
+            </div>
         </dd>
     </dl>
     

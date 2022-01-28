@@ -1,44 +1,52 @@
 ﻿@model List<SistemaRH.Models.Competencia>
-@{
-    ViewData["Title"] = "Index";
+@{ 
+    ViewData["Title"] = "Index"; 
 }
 
 <div class="text-center">
-    <h1 class="display-4">Competencias</h1>
+    <h4 class="card-title">Competencias</h4>
 </div>
 <p>
     <a asp-action="Create">Agregar Departamento</a>
 </p>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Descripcion</th>
-            <th>Estado</th>
-            <th>Opciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<p class="card-description">Add class <code>.table-hover</code>
+</p>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
             <tr>
-                <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-                <td>
+                <th>Descripcion</th>
+                <th>Estado</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
                     @if (item.Estado == true)
                     {
-                        @Html.DisplayName("Activo")
+                        <td class="text-success">
+                            @Html.DisplayName("Activo")
+                            <i class="ti-arrow-up"></i>
+                        </td>
                     }
                     else if (item.Estado == false)
                     {
-                        @Html.DisplayName("Inactivo")
+                        <td class="text-danger">
+                            @Html.DisplayName("Inactivo")
+                            <i class="ti-arrow-down"></i>
+                        </td>
                     }
-                </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
-            </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                    <td>
+                        <a class="btn btn-warning btn-rounded btn-fw" asp-action="Edit" asp-route-id="@item.Id" value="Editar">Editar</a>
+                        <a class="btn btn-danger btn-rounded btn-fw" asp-action="Delete" asp-route-id="@item.Id" value="Eliminar">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

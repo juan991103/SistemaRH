@@ -19,10 +19,14 @@
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <p style="text-decoration-color:red;">Desmarque el Cuadro para activar/desactivar la competencia</p>
-                <label asp-for="Estado" class="control-label"></label>
-                <input asp-for="Estado" class="form-control" />
-                <span asp-validation-for="Estado" class="text-danger"></span>
+                <p style="text-decoration-color:red;">Desmarque el cuadro para activar/desactivar la competencia</p>
+                <div class="form-check form-check-success">
+                    <label class="form-check-label" asp-for="Estado">
+                        <input type="checkbox" asp-for="Estado" class="form-check-input">
+                        Estado
+                    </label>
+                    <span asp-validation-for="Estado" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
