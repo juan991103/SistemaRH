@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace SistemaRH.Controllers
 {
-    public class CompetenciaController : Controller
+    public class IdiomasController : Controller
     {
         private readonly DataContext _context;
 
-        public CompetenciaController(DataContext context)
+        public IdiomasController(DataContext context)
         {
             _context = context;
         }
