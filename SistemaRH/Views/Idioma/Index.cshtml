@@ -1,13 +1,13 @@
-﻿@model List<SistemaRH.Models.Competencia>
+﻿@model List<SistemaRH.Models.Idioma>
 @{ 
     ViewData["Title"] = "Index"; 
 }
 
 <div class="text-center">
-    <h4 class="card-title">Competencias</h4>
+    <h4 class="card-title">Idiomas</h4>
 </div>
 <p>
-    <a asp-action="Create">Agregar Competencia</a>
+    <a asp-action="Create">Agregar Idioma</a>
 </p>
 <p class="card-description">Add class <code>.table-hover</code>
 </p>
@@ -15,7 +15,7 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Descripcion</th>
+                <th>Nombre</th>
                 <th>Estado</th>
                 <th>Opciones</th>
             </tr>
@@ -25,7 +25,7 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Descripcion)
+                        @Html.DisplayFor(modelItem => item.Nombre)
                     </td>
                     @if (item.Estado == true)
                     {

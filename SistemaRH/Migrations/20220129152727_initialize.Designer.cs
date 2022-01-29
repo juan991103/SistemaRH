@@ -8,8 +8,8 @@ using SistemaRH.Data;
 namespace SistemaRH.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220125173225_Initial")]
-    partial class Initial
+    [Migration("20220129152727_initialize")]
+    partial class initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,6 +35,25 @@ namespace SistemaRH.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("gestion_competencia");
+                });
+
+            modelBuilder.Entity("SistemaRH.Models.Idioma", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("gestion_idiomas");
                 });
 #pragma warning restore 612, 618
         }

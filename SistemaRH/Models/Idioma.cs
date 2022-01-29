@@ -9,7 +9,7 @@ namespace SistemaRH.Models
     public class Idioma
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "El Nombre es requerida")]
+        [Required(ErrorMessage = "El idioma es requerido")]
         [StringLength(50)]
         [DataType(DataType.Text)]
         [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]

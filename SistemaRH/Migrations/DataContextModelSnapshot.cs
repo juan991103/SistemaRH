@@ -34,6 +34,25 @@ namespace SistemaRH.Migrations
 
                     b.ToTable("gestion_competencia");
                 });
+
+            modelBuilder.Entity("SistemaRH.Models.Idioma", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("gestion_idiomas");
+                });
 #pragma warning restore 612, 618
         }
     }

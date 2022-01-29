@@ -9,19 +9,19 @@ using System.Threading.Tasks;
 
 namespace SistemaRH.Controllers
 {
-    public class CompetenciaController : Controller
+    public class IdiomaController : Controller
     {
         private readonly DataContext _context;
 
-        public CompetenciaController(DataContext context)
+        public IdiomaController(DataContext context)
         {
             _context = context;
         }
 
         public IActionResult Index()
         {
-            var competencia = _context.gestion_competencia.ToList();
-            return View(competencia);
+            var idioma = _context.gestion_idiomas.ToList();
+            return View(idioma);
         }
 
         public IActionResult Create()
@@ -34,15 +34,15 @@ namespace SistemaRH.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Descripcion")] Competencia competencias)
+        public async Task<IActionResult> Create([Bind("Id,Nombre")] Idioma idiomas)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(competencias);
+                _context.Add(idiomas);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(competencias);
+            return View(idiomas);
         }
 
         // GET: Cargos/Delete/5 eliminar
@@ -53,14 +53,14 @@ namespace SistemaRH.Controllers
                 return NotFound();
             }
 
-            var competencia = await _context.gestion_competencia
+            var idiomas = await _context.gestion_idiomas
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (competencia == null)
+            if (idiomas == null)
             {
                 return NotFound();
             }
 
-            return View(competencia);
+            return View(idiomas);
         }
 
         // POST: competencia/Delete/5 eliminar
@@ -68,8 +68,8 @@ namespace SistemaRH.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var competencia = await _context.gestion_competencia.FindAsync(id);
-            _context.gestion_competencia.Remove(competencia);
+            var idiomas = await _context.gestion_idiomas.FindAsync(id);
+            _context.gestion_idiomas.Remove(idiomas);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -82,20 +82,20 @@ namespace SistemaRH.Controllers
                 return NotFound();
             }
 
-            var competencia = await _context.gestion_competencia.FindAsync(id);
-            if (competencia == null)
+            var idiomas = await _context.gestion_idiomas.FindAsync(id);
+            if (idiomas == null)
             {
                 return NotFound();
             }
-            return View(competencia);
+            return View(idiomas);
         }
 
         //post de edicion
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Descripcion,Estado")] Competencia competencias)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Estado")] Idioma idiomas)
         {
-            if (id != competencias.Id)
+            if (id != idiomas.Id)
             {
                 return NotFound();
             }
@@ -104,12 +104,12 @@ namespace SistemaRH.Controllers
             {
                 try
                 {
-                    _context.Update(competencias);
+                    _context.Update(idiomas);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CompetenciaExists(competencias.Id))
+                    if (!IdiomaExists(idiomas.Id))
                     {
                         return NotFound();
                     }
@@ -120,12 +120,12 @@ namespace SistemaRH.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(competencias);
+            return View(idiomas);
         }
 
-        private bool CompetenciaExists(int id)
+        private bool IdiomaExists(int id)
         {
-            return _context.gestion_competencia.Any(e => e.Id == id);
+            return _context.gestion_idiomas.Any(e => e.Id == id);
         }
     }
 }
