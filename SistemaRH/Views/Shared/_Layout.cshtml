@@ -35,10 +35,10 @@
                 </div>
                 <div>
                     <a class="navbar-brand brand-logo" asp-controller="Home" asp-action="Index">
-                        <img src="images/logo.svg" alt="logo" />
+                        <img src="~/images/logo.svg" alt="logo" />
                     </a>
                     <a class="navbar-brand brand-logo-mini" asp-controller="Home" asp-action="Index">
-                        <img src="images/logo-mini.svg" alt="logo" />
+                        <img src="~/images/logo-mini.svg" alt="logo" />
                     </a>
                 </div>
             </div>
@@ -82,11 +82,11 @@
                     </li>
                     <li class="nav-item dropdown d-none d-lg-block user-dropdown">
                         <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="img-xs rounded-circle" src="images/faces/face8.jpg" alt="Profile image">
+                            <img class="img-xs rounded-circle" src="~/images/faces/face8.jpg" alt="Profile image">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                             <div class="dropdown-header text-center">
-                                <img class="img-md rounded-circle" src="images/faces/face8.jpg" alt="Profile image">
+                                <img class="img-md rounded-circle" src="~/images/faces/face8.jpg" alt="Profile image">
                                 <p class="mb-1 mt-3 font-weight-semibold">Administrador</p>
                                 <p class="fw-light text-muted mb-0">soloadmin@adm.com</p>
                             </div>
@@ -145,7 +145,8 @@
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" asp-controller="Competencia" asp-action="Index">Competencias</a></li>
                                 <li class="nav-item"> <a class="nav-link" asp-controller="Idioma" asp-action="Index">Idiomas</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="Capacitacion" asp-action="Index">Capacitacion</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="Puestos" asp-action="Index">Puestos</a></li>
                             </ul>
                         </div>
                     </li>

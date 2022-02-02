@@ -16,6 +16,8 @@ namespace SistemaRH.Data
         }
         public DbSet<Competencia> gestion_competencia { get; set; }
         public DbSet<Idioma> gestion_idiomas { get; set; }
+        public DbSet<Capacitacion> gestion_capacitacion { get; set; }
+        public DbSet<Puestos> gestion_puestos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

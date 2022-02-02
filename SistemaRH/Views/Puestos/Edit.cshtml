@@ -1,0 +1,61 @@
+﻿@model SistemaRH.Models.Puestos
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<div class="text-center">
+    <h4 class="card-title">Gestion de Puestos</h4>
+</div>
+
+<h1>Editar</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nivel_Riesgo" class="control-label"></label>
+                <input asp-for="Nivel_Riesgo" class="form-control" />
+                <span asp-validation-for="Nivel_Riesgo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Minimo_Salario" class="control-label"></label>
+                <input asp-for="Minimo_Salario" class="form-control" />
+                <span asp-validation-for="Minimo_Salario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Maximo_Salario" class="control-label"></label>
+                <input asp-for="Maximo_Salario" class="form-control" />
+                <span asp-validation-for="Maximo_Salario" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <p style="text-decoration-color:red;">Marque el cuadro para activar/desactivar el puesto</p>
+                <div class="form-check form-check-success">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Estado" />
+                        @Html.DisplayNameFor(model => model.Estado)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

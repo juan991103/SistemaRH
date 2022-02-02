@@ -6,7 +6,6 @@
 
 <h1>Crear Competencia</h1>
 
-<h4>Gestion de competencias</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -16,6 +15,15 @@
                 <label asp-for="Descripcion" class="control-label"></label>
                 <input asp-for="Descripcion" class="form-control" />
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <p style="text-decoration-color:red;">Marque el cuadro para activar el idioma</p>
+                <div class="form-check form-check-success">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Estado" />
+                        @Html.DisplayNameFor(model => model.Estado)
+                    </label>
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Agregar" class="btn btn-primary" />

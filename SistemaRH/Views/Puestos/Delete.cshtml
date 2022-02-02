@@ -1,0 +1,55 @@
+﻿@model SistemaRH.Models.Puestos
+
+@{
+    ViewData["Title"] = "Eliminar";
+}
+
+<div class="text-center">
+    <h4 class="card-title">Gestion de Puestos</h4>
+</div>
+
+<h1>Eliminar</h1>
+
+<h3>¿Estas seguro de que quieres eliminar este idioma?</h3>
+<div>
+    <h4>Puestos</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nivel_Riesgo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nivel_Riesgo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Minimo_Salario)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Minimo_Salario)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Maximo_Salario)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Maximo_Salario)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Borrar" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
