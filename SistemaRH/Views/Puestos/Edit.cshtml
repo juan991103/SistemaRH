@@ -23,7 +23,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="Nivel_Riesgo" class="control-label"></label>
-                <input asp-for="Nivel_Riesgo" class="form-control" />
+                <select asp-for="Nivel_Riesgo" class="form-control">
+                    <option value="">--Selecciona el nivel de riesgo--</option>
+                    <option value="Riesgo Bajo">Riesgo Bajo</option>
+                    <option value="Riesgo Medio">Riesgo Medio</option>
+                    <option value="Riesgo Alto">Riesgo Alto</option>
+                    <option value="Riesgo Avanzado">Riesgo Avanzado</option>
+                </select>
                 <span asp-validation-for="Nivel_Riesgo" class="text-danger"></span>
             </div>
             <div class="form-group">
