@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Agregar candidato</a>
 </p>
 <div class="table-responsive">
     <table class="table table-hover">
@@ -21,46 +21,69 @@
                 <th>Competencias</th>
                 <th>Capacitacion</th>
                 <th>Experiencia Laboral</th>
+                <th>Idioma dominante</th>
+                <th>idioma secundario</th>
                 <th>Recomendacion</th>
-                <th></th>
+                <th>Estado</th>
+                <th>Opciones</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cedula)
+            <tr>
+                <td style=" word-wrap: break-word;">
+                    @Html.DisplayFor(modelItem => item.Cedula)
+                </td>
+                <td style=" word-wrap: break-word;">
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td style=" word-wrap: break-word;">
+                    @Html.DisplayFor(modelItem => item.Puesto)
+                </td>
+                <td style=" word-wrap: break-word;">
+                    @Html.DisplayFor(modelItem => item.Departamento)
+                </td>
+                <td style=" word-wrap: break-word;">
+                    @Html.DisplayFor(modelItem => item.Salario)
+                </td>
+                <td style=" word-wrap: break-word;">
+                    @Html.DisplayFor(modelItem => item.Competencias)
+                </td>
+                <td style=" word-wrap: break-word;">
+                    @Html.DisplayFor(modelItem => item.Capacitacion)
+                </td>
+                <td style=" word-wrap: break-word;">
+                    @Html.DisplayFor(modelItem => item.Experiencia_laboral)
+                </td>
+                <td style=" word-wrap: break-word;">
+                    @Html.DisplayFor(modelItem => item.Idioma_dominante)
+                </td>
+                <td style=" word-wrap: break-word;">
+                    @Html.DisplayFor(modelItem => item.Idioma_secundario)
+                </td>
+                <td style="word-wrap: break-word;">
+                    @Html.DisplayFor(modelItem => item.Recomendacion)
+                </td>
+                @if (item.Estado == true)
+                {
+                    <td class="text-success" style="word-wrap: break-word;">
+                        @Html.DisplayName("Aceptado")
+                        <i class="ti-arrow-up"></i>
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nombre)
+                }
+                else if (item.Estado == false)
+                {
+                    <td class="text-danger" style="word-wrap: break-word;">
+                        @Html.DisplayName("Denegado")
+                        <i class="ti-arrow-down"></i>
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Puesto)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Departamento)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Salario)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Competencias)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Capacitacion)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Experiencia_laboral)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Recomendacion)
-                    </td>
-                    <td>
-                        <a class="btn btn-warning btn-rounded btn-fw" asp-action="Edit" asp-route-id="@item.Id" value="Editar">Editar</a>
-                        <a class="btn btn-danger btn-rounded btn-fw" asp-action="Delete" asp-route-id="@item.Id" value="Eliminar">Eliminar</a>
-                    </td>
-                </tr>
+                }
+                <td>
+                    <a class="btn btn-warning btn-rounded btn-fw" asp-action="Edit" asp-route-id="@item.Id" value="Editar">Editar</a>
+                    <a class="btn btn-danger btn-rounded btn-fw" asp-action="Delete" asp-route-id="@item.Id" value="Eliminar">Eliminar</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

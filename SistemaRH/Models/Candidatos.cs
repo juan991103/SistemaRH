@@ -35,6 +35,16 @@ namespace SistemaRH.Models
         [Required(ErrorMessage = "La recomendacion es requerida")]
         [StringLength(50)]
         [DataType(DataType.Text)]
+        public string Idioma_dominante { get; set; }
+        [Required(ErrorMessage = "El idioma es requerido")]
+        [StringLength(50)]
+        [DataType(DataType.Text)]
+        public string Idioma_secundario { get; set; }
+        [Required(ErrorMessage = "El idioma es requerido")]
+        [StringLength(50)]
+        [DataType(DataType.Text)]
         public string Recomendacion { get; set; }
+        [Required(ErrorMessage = "El Estado debe estar seleccionado")]
+        public bool Estado { get; set; }
     }
 }

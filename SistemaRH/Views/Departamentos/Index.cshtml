@@ -1,0 +1,36 @@
+﻿@model IEnumerable<SistemaRH.Models.Departamentos>
+
+@{
+    ViewData["Title"] = "Departamentos";
+}
+
+<h1>Gestion de departamentos</h1>
+
+<p>
+    <a asp-action="Create">Agregar departamento</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Codigo Departamento</th>
+            <th>Nombre</th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoDepartamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                <a class="btn btn-warning btn-rounded btn-fw" asp-action="Edit" asp-route-id="@item.Id" value="Editar">Editar</a>
+                <a class="btn btn-danger btn-rounded btn-fw" asp-action="Delete" asp-route-id="@item.Id" value="Eliminar">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

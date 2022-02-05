@@ -54,6 +54,16 @@ namespace SistemaRH.Controllers
                 puestos.Add(item.Nombre);
                 ViewBag.puest = puestos;
             }
+
+            //obtener datos de departamento
+            List<string> departamento = new List<string>();
+            var ve = _context.gestion_departamento.ToList();
+            foreach (var item in ve)
+            {
+                departamento.Add(item.Nombre);
+                ViewBag.dep = departamento;
+            }
+
             //obtener datos de competencia
             List<string> competencia = new List<string>();
             var vc = _context.gestion_competencia.ToList();
@@ -71,6 +81,17 @@ namespace SistemaRH.Controllers
                 capacitacion.Add(item.Descripcion);
                 ViewBag.capa = capacitacion;
             }
+
+            //obtener datos de idiomas
+            List<string> idiomas = new List<string>();
+            var vi = _context.gestion_idiomas.ToList();
+            foreach (var item in vi)
+            {
+                idiomas.Add(item.Nombre);
+                ViewBag.idi = idiomas;
+                ViewBag.idi2 = idiomas;
+            }
+
             return View();
         }
 
@@ -79,7 +100,7 @@ namespace SistemaRH.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Cedula,Nombre,Puesto,Departamento,Salario,Competencias,Capacitacion,Experiencia_laboral,Recomendacion")] Candidatos candidatos)
+        public async Task<IActionResult> Create([Bind("Id,Cedula,Nombre,Puesto,Departamento,Salario,Competencias,Capacitacion,Experiencia_laboral,Idioma_dominante,Idioma_secundario,Recomendacion,Estado")] Candidatos candidatos)
         {
             if (ModelState.IsValid)
             {
@@ -102,6 +123,16 @@ namespace SistemaRH.Controllers
                 puestos.Add(item.Nombre);
                 ViewBag.puest = puestos;
             }
+
+            //obtener datos de departamento
+            List<string> departamento = new List<string>();
+            var ve = _context.gestion_departamento.ToList();
+            foreach (var item in ve)
+            {
+                departamento.Add(item.Nombre);
+                ViewBag.dep = departamento;
+            }
+
             //obtener datos de competencia
             List<string> competencia = new List<string>();
             var vc = _context.gestion_competencia.ToList();
@@ -118,6 +149,16 @@ namespace SistemaRH.Controllers
             {
                 capacitacion.Add(item.Descripcion);
                 ViewBag.capa = capacitacion;
+            }
+
+            //obtener datos de idiomas
+            List<string> idiomas = new List<string>();
+            var vi = _context.gestion_idiomas.ToList();
+            foreach (var item in vi)
+            {
+                idiomas.Add(item.Nombre);
+                ViewBag.idi = idiomas;
+                ViewBag.idi2 = idiomas;
             }
 
             if (id == null)
@@ -138,7 +179,7 @@ namespace SistemaRH.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Cedula,Nombre,Puesto,Departamento,Salario,Competencias,Capacitacion,Experiencia_laboral,Recomendacion")] Candidatos candidatos)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Cedula,Nombre,Puesto,Departamento,Salario,Competencias,Capacitacion,Experiencia_laboral,Idioma_dominante,Idioma_secundario,Recomendacion,Estado")] Candidatos candidatos)
         {
             if (id != candidatos.Id)
             {
