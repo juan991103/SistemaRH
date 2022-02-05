@@ -1,0 +1,67 @@
+﻿@model IEnumerable<SistemaRH.Models.Candidatos>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Cedula</th>
+                <th>Nombre</th>
+                <th>Puesto</th>
+                <th>Departamento</th>
+                <th>Salario</th>
+                <th>Competencias</th>
+                <th>Capacitacion</th>
+                <th>Experiencia Laboral</th>
+                <th>Recomendacion</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cedula)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Puesto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Departamento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Salario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Competencias)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Capacitacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Experiencia_laboral)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Recomendacion)
+                    </td>
+                    <td>
+                        <a class="btn btn-warning btn-rounded btn-fw" asp-action="Edit" asp-route-id="@item.Id" value="Editar">Editar</a>
+                        <a class="btn btn-danger btn-rounded btn-fw" asp-action="Delete" asp-route-id="@item.Id" value="Eliminar">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
