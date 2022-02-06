@@ -25,22 +25,9 @@ namespace SistemaRH.Controllers
             return View(await _context.gestion_candidatos.ToListAsync());
         }
 
-        // GET: Candidatos/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Completa()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var candidatos = await _context.gestion_candidatos
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (candidatos == null)
-            {
-                return NotFound();
-            }
-
-            return View(candidatos);
+            return View(await _context.gestion_candidatos.ToListAsync());
         }
 
         // GET: Candidatos/Create
@@ -48,7 +35,7 @@ namespace SistemaRH.Controllers
         {
             //obtener datos de puestos
             List<string> puestos = new List<string>();
-            var vd = _context.gestion_puestos.ToList();
+            var vd = from em in _context.gestion_puestos where (em.Estado == true) select em;
             foreach (var item in vd)
             {
                 puestos.Add(item.Nombre);
@@ -66,7 +53,7 @@ namespace SistemaRH.Controllers
 
             //obtener datos de competencia
             List<string> competencia = new List<string>();
-            var vc = _context.gestion_competencia.ToList();
+            var vc = from em in _context.gestion_competencia where (em.Estado == true) select em;
             foreach (var item in vc)
             {
                 competencia.Add(item.Descripcion);
@@ -84,7 +71,7 @@ namespace SistemaRH.Controllers
 
             //obtener datos de idiomas
             List<string> idiomas = new List<string>();
-            var vi = _context.gestion_idiomas.ToList();
+            var vi = from em in _context.gestion_idiomas where (em.Estado == true) select em;
             foreach (var item in vi)
             {
                 idiomas.Add(item.Nombre);
@@ -104,6 +91,8 @@ namespace SistemaRH.Controllers
         {
             if (ModelState.IsValid)
             {
+                var agregar = (from m in _context.gestion_candidatos where m.Nombre == candidatos.Nombre select m).First();
+                agregar.Estado = true;
                 _context.Add(candidatos);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -114,10 +103,9 @@ namespace SistemaRH.Controllers
         // GET: Candidatos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-
             //obtener datos de puestos
             List<string> puestos = new List<string>();
-            var vd = _context.gestion_puestos.ToList();
+            var vd = from em in _context.gestion_puestos where (em.Estado == true) select em;
             foreach (var item in vd)
             {
                 puestos.Add(item.Nombre);
@@ -135,7 +123,7 @@ namespace SistemaRH.Controllers
 
             //obtener datos de competencia
             List<string> competencia = new List<string>();
-            var vc = _context.gestion_competencia.ToList();
+            var vc = from em in _context.gestion_competencia where (em.Estado == true) select em;
             foreach (var item in vc)
             {
                 competencia.Add(item.Descripcion);
@@ -153,7 +141,8 @@ namespace SistemaRH.Controllers
 
             //obtener datos de idiomas
             List<string> idiomas = new List<string>();
-            var vi = _context.gestion_idiomas.ToList();
+            var vi = from em in _context.gestion_idiomas where (em.Estado == true) select em;
+            
             foreach (var item in vi)
             {
                 idiomas.Add(item.Nombre);
