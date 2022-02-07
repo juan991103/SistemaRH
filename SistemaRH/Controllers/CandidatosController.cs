@@ -30,6 +30,23 @@ namespace SistemaRH.Controllers
             return View(await _context.gestion_candidatos.ToListAsync());
         }
 
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var candidato = await _context.gestion_candidatos
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (candidato == null)
+            {
+                return NotFound();
+            }
+
+            return View(candidato);
+        }
+
         // GET: Candidatos/Create
         public IActionResult Create()
         {
