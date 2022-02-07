@@ -91,8 +91,6 @@ namespace SistemaRH.Controllers
         {
             if (ModelState.IsValid)
             {
-                var agregar = (from m in _context.gestion_candidatos where m.Nombre == candidatos.Nombre select m).First();
-                agregar.Estado = true;
                 _context.Add(candidatos);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

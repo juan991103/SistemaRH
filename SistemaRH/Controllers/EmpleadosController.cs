@@ -46,13 +46,33 @@ namespace SistemaRH.Controllers
         // GET: Empleados/Create
         public IActionResult Create()
         {
-            List<string> empleados = new List<string>();
+            //obtener datos de candidatos
+            List<string> empleado = new List<string>();
             var vd = from em in _context.gestion_candidatos where (em.Estado == true) select em;
             foreach (var item in vd)
             {
-                empleados.Add(item.Nombre);
-                ViewBag.emps = empleados;
+                empleado.Add(item.Nombre);
+                ViewBag.emps = empleado;
             }
+
+            //obtener datos de puestos
+            List<string> puestos = new List<string>();
+            var vp = from em in _context.gestion_puestos where (em.Estado == true) select em;
+            foreach (var item in vp)
+            {
+                puestos.Add(item.Nombre);
+                ViewBag.pst = puestos;
+            }
+
+            //obtener datos de departamento
+            List<string> departamento = new List<string>();
+            var ve = _context.gestion_departamento.ToList();
+            foreach (var item in ve)
+            {
+                departamento.Add(item.Nombre);
+                ViewBag.dep = departamento;
+            }
+
             return View();
         }
 
@@ -65,8 +85,6 @@ namespace SistemaRH.Controllers
         {
             if (ModelState.IsValid)
             {
-                var agregar = (from m in _context.empleados where m.Nombre == empleados.Nombre select m).First();
-                agregar.Estado = true;
                 _context.Add(empleados);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -77,6 +95,33 @@ namespace SistemaRH.Controllers
         // GET: Empleados/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            //obtener datos de puestos
+            List<string> empleado = new List<string>();
+            var vd = from em in _context.gestion_candidatos where (em.Estado == true) select em;
+            foreach (var item in vd)
+            {
+                empleado.Add(item.Nombre);
+                ViewBag.emps = empleado;
+            }
+
+            //obtener datos de puestos
+            List<string> puestos = new List<string>();
+            var vp = from em in _context.gestion_puestos where (em.Estado == true) select em;
+            foreach (var item in vp)
+            {
+                puestos.Add(item.Nombre);
+                ViewBag.pst = puestos;
+            }
+
+            //obtener datos de departamento
+            List<string> departamento = new List<string>();
+            var ve = _context.gestion_departamento.ToList();
+            foreach (var item in ve)
+            {
+                departamento.Add(item.Nombre);
+                ViewBag.dep = departamento;
+            }
+
             if (id == null)
             {
                 return NotFound();

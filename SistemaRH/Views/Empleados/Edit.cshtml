@@ -30,12 +30,22 @@
             </div>
             <div class="form-group">
                 <label asp-for="Departamento" class="control-label"></label>
-                <input asp-for="Departamento" class="form-control" />
+                <select asp-for="Departamento" class="form-control">
+                    @foreach (var item in ViewBag.dep)
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
                 <span asp-validation-for="Departamento" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Puesto" class="control-label"></label>
-                <input asp-for="Puesto" class="form-control" />
+                <select asp-for="Puesto" class="form-control">
+                    @foreach (var item in ViewBag.pst)
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
                 <span asp-validation-for="Puesto" class="text-danger"></span>
             </div>
             <div class="form-group">
