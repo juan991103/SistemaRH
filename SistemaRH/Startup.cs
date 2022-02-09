@@ -28,6 +28,8 @@ namespace SistemaRH
             services.AddDbContext<DataContext>(options=>options.UseMySQL(Configuration.GetConnectionString("Default")));
             services.AddControllersWithViews();
             services.AddMvc();
+            services.AddSession();
+            services.AddMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

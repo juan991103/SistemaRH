@@ -10,4 +10,19 @@
     <PackageReference Include="AspNetCore.Reporting" Version="2.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="sistemarhDataSet1.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>sistemarhDataSet1.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="sistemarhDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>sistemarhDataSet1.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
 </Project>

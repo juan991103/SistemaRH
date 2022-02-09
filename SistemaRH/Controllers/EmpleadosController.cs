@@ -232,7 +232,7 @@ namespace SistemaRH.Controllers
             int extension = 1;
             var path = $"{ this.host.WebRootPath}\\Reports\\Report1.rdlc";
             Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters.Add("rp1", "");
+            parameters.Add("rp1", "RDLC");
             LocalReport localReport = new LocalReport(path);
             var result = localReport.Execute(RenderType.Pdf, extension, parameters, mintype);
             return File(result.MainStream, "application/pdf");
