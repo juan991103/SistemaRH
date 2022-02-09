@@ -19,6 +19,24 @@ namespace SistemaRH.Controllers
             _context = context;
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index(string busqueda, string fecha, DateTime start, DateTime end)
+        {
+            var nombres = from s in _context.empleados
+                          select s;
+            if (!String.IsNullOrEmpty(busqueda))
+            {
+                nombres = nombres.Where(s => s.Nombre.Contains(busqueda));
+            }
+            else
+            {
+                nombres = nombres.Where(s => s.Fecha_Ingreso >= start && s.Fecha_Ingreso <= end);
+
+            }
+                return View(await nombres.AsNoTracking().ToListAsync());
+        }
+
         // GET: Empleados
         public async Task<IActionResult> Index()
         {

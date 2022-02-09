@@ -1,22 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AspNetCore.Reporting;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SistemaRH.Data;
 using SistemaRH.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SistemaRH.Controllers
 {
     public class CandidatosController : Controller
     {
         private readonly DataContext _context;
-
-        public CandidatosController(DataContext context)
+        private readonly IWebHostEnvironment host;
+        
+        public CandidatosController(DataContext context, IWebHostEnvironment hostweb)
         {
             _context = context;
+            this.host = hostweb;
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
         }
 
         // GET: Candidatos
@@ -246,5 +249,18 @@ namespace SistemaRH.Controllers
         {
             return _context.gestion_candidatos.Any(e => e.Id == id);
         }
+                
+        public IActionResult Imprimir()
+        {
+            string mintype = "";
+            int extension = 1;
+            var path = $"{ this.host.WebRootPath}\\Reports\\Report1.rdlc";
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("rp1", "");
+            LocalReport localReport = new LocalReport(path);
+            var result = localReport.Execute(RenderType.Pdf, extension, parameters, mintype);
+            return File(result.MainStream, "application/pdf");
+        }
+
     }
 }

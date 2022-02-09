@@ -16,6 +16,7 @@ namespace SistemaRH.Models
         public string Nombre { get; set; }
         public string Departamento { get; set; }
         [Required(ErrorMessage = "Elige la fecha")]
+        [DataType(DataType.Date)]
         public DateTime Fecha_Ingreso { get; set; }
         public string Puesto { get; set; }
         [Required(ErrorMessage = "Rellene el salario")]

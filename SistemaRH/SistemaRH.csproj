@@ -5,14 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\Reports\Report1.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCore.Reporting" Version="2.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.12">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Reporting.WinForms.v11" Version="1.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.10" />
+    <PackageReference Include="System.CodeDom" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +31,7 @@
     <None Include="wwwroot\css\maps\horizontal-layout-light\style.css.map" />
     <None Include="wwwroot\css\maps\vertical-layout-dark\style.css.map" />
     <None Include="wwwroot\css\maps\vertical-layout-light\style.css.map" />
+    <None Include="wwwroot\Reports\Report1.rdlc" />
     <None Include="wwwroot\scss\common\light\common.scss" />
     <None Include="wwwroot\scss\common\light\components\loaders\_bar-loader.scss" />
     <None Include="wwwroot\scss\common\light\components\loaders\_circle-loader.scss" />

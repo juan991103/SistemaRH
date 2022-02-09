@@ -27,6 +27,7 @@ namespace SistemaRH
         {
             services.AddDbContext<DataContext>(options=>options.UseMySQL(Configuration.GetConnectionString("Default")));
             services.AddControllersWithViews();
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +54,7 @@ namespace SistemaRH
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Admin}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
