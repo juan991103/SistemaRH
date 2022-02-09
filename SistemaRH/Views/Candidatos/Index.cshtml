@@ -10,6 +10,14 @@
 <p>
     <a asp-action="Create">Agregar candidato</a>&ensp;&ensp;<a asp-action="Completa">Mostrar mas datos...</a>&ensp;&ensp;<a asp-action="Imprimir">Generar Reporte</a>
 </p> 
+
+<form asp-action="Index" method="post">
+    <div class="form-actions no-color d-flex justify-content-between">
+        <input type="search" name="busqueda" value="" class="form-control" placeholder="Buscar por nombre...">
+        <input type="submit" value="Buscar" class="btn btn-outline-success form-control" />
+    </div>
+</form>
+
 <div class="table-responsive">
     <table class="table table-hover">
         <thead>

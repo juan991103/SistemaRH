@@ -8,11 +8,11 @@
     <h4 class="card-title">Gestion de Empleados</h4>
 </div>
 <p>
-    <a asp-action="Create">Agregar empleado aceptado</a>
+    <a asp-action="Create">Agregar empleado aceptado</a>&ensp;&ensp;<a asp-action="Imprimir">Generar Reporte</a>
 </p>
 
 <form asp-action="Index" method="post">
-    <div class="form-actions no-color d-flex justify-content-between" style=" border:solid; border-radius:5px; border-width:2px; padding:0.6px">
+    <div class="form-actions no-color d-flex justify-content-between">
         <input type="search" name="busqueda" value="" class="form-control" placeholder="Buscar por nombre...">
         <input type="date" name="start" value="" class="form-control" placeholder="Fecha desde...">
         <input type="date" name="end" value="" class="form-control" placeholder="Fecha hasta...">
