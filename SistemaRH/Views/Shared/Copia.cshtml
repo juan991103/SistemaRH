@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Login"] - SistemaRH</title>
+    <!-- endinject -->
+    <link rel="shortcut icon" href="~/images/favicon.png" />
+    <link rel="stylesheet" href="~/css/login.css" />
+</head>
+<body>   
+
+<main role="main" class="pb-3">
+    @RenderBody()
+</main>
+               
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

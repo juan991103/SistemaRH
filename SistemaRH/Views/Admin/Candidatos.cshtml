@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "Candidatos";
+    Layout = "~/Views/Shared/Copia.cshtml";
+}
+
+<h1>SistemaRH</h1>
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <a class="inactive underlineHover" asp-action="Index">Administrador </a>
+        <h2 class="active"> Candidatos </h2>
+
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+        </div>
+
+        <!-- Login Form -->
+        <form>
+            <input type="text" id="login" class="fadeIn second" name="login" placeholder="Iniciar Sesioon">
+            <input type="text" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
+            <a asp-controller="Home" asp-action="Index"><input type="button" class="btn fadeIn fourth" value="Iniciar Sesion"></a>
+        </form>
+
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            <a class="underlineHover" href="#">Recuperar Contraseña?</a>
+        </div>
+
+    </div>
+</div>
+
