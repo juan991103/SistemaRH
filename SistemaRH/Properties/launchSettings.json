@@ -5,6 +5,11 @@
     "iisExpress": {
       "applicationUrl": "http://localhost:1598",
       "sslPort": 44300
+    },
+    "EPPlus": {
+      "ExcelPackage": {
+        "LicenseContext": "Commercial" //The license context used
+      }
     }
   },
   "profiles": {

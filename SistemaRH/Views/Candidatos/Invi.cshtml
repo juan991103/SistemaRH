@@ -1,0 +1,79 @@
+﻿@model IEnumerable<SistemaRH.Models.Candidatos>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Candidato.cshtml";
+}
+
+<div class="text-center">
+    <h4 class="card-title">Gestion de Candidatos</h4>
+</div>
+<p>
+    <a asp-action="Create">Agregar candidato</a>&ensp;&ensp;<a asp-action="Completa2">Mostrar mas datos...</a>
+</p> 
+
+<form asp-action="Invi" method="post">
+    <div class="form-actions no-color d-flex justify-content-between">
+        <input type="search" name="busqueda" value="" class="form-control" placeholder="Buscar...">
+        <input type="submit" value="Buscar" class="btn btn-outline-success form-control" />
+    </div>
+</form>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Cedula</th>
+                <th>Nombre</th>
+                <th>Puesto</th>
+                <th>Departamento</th>
+                <th>Salario</th>
+                <th>Idioma dominante</th>
+                <th>Recomendacion</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cedula)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Puesto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Departamento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Idioma_dominante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Recomendacion)
+                </td>
+                @if (item.Estado == true)
+                {
+                    <td class="text-success" style="word-wrap: break-word;">
+                        @Html.DisplayName("Aceptado")
+                        <i class="ti-arrow-up"></i>
+                    </td>
+                }
+                else if (item.Estado == false)
+                {
+                    <td class="text-danger" style="word-wrap: break-word;">
+                        @Html.DisplayName("Denegado")
+                        <i class="ti-arrow-down"></i>
+                    </td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

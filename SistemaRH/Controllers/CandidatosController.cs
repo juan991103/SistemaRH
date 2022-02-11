@@ -46,6 +46,32 @@ namespace SistemaRH.Controllers
             return View(await nombres.AsNoTracking().ToListAsync());
         }
 
+        public async Task<IActionResult> Invi()
+        {
+            return View(await _context.gestion_candidatos.ToListAsync());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Invi(string busqueda)
+        {
+            var nombres = from s in _context.gestion_candidatos
+                          select s;
+            if (!String.IsNullOrEmpty(busqueda))
+            {
+                nombres = nombres.Where(s => s.Nombre.Contains(busqueda)
+                || s.Departamento.Contains(busqueda) || s.Competencias.Contains(busqueda)
+                || s.Capacitacion.Contains(busqueda) || s.Puesto.Contains(busqueda)
+                || s.Experiencia_laboral.Equals(busqueda) || s.Idioma_dominante.Contains(busqueda));
+            }
+            else if (!String.IsNullOrEmpty(busqueda))
+            {
+                nombres = nombres.Where(s => s.Competencias.Contains(busqueda));
+            }
+
+            return View(await nombres.AsNoTracking().ToListAsync());
+        }
+
         public async Task<IActionResult> Completa()
         {
             return View(await _context.gestion_candidatos.ToListAsync());
@@ -54,6 +80,32 @@ namespace SistemaRH.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Completa(string busqueda)
+        {
+            var nombres = from s in _context.gestion_candidatos
+                          select s;
+            if (!String.IsNullOrEmpty(busqueda))
+            {
+                nombres = nombres.Where(s => s.Nombre.Contains(busqueda)
+                || s.Departamento.Contains(busqueda) || s.Competencias.Contains(busqueda)
+                || s.Capacitacion.Contains(busqueda) || s.Puesto.Contains(busqueda)
+                || s.Experiencia_laboral.Equals(busqueda) || s.Idioma_dominante.Contains(busqueda));
+            }
+            else if (!String.IsNullOrEmpty(busqueda))
+            {
+                nombres = nombres.Where(s => s.Competencias.Contains(busqueda));
+            }
+
+            return View(await nombres.AsNoTracking().ToListAsync());
+        }
+
+        public async Task<IActionResult> Completa2()
+        {
+            return View(await _context.gestion_candidatos.ToListAsync());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Completa2(string busqueda)
         {
             var nombres = from s in _context.gestion_candidatos
                           select s;

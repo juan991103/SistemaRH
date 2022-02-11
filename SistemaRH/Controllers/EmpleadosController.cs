@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AspNetCore.Reporting;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
 using SistemaRH.Data;
 using SistemaRH.Models;
 
@@ -15,12 +17,12 @@ namespace SistemaRH.Controllers
     public class EmpleadosController : Controller
     {
         private readonly DataContext _context;
-        private readonly IWebHostEnvironment host;
+        private readonly IWebHostEnvironment env;
 
-        public EmpleadosController(DataContext context, IWebHostEnvironment hostweb)
+        public EmpleadosController(DataContext context, IWebHostEnvironment host)
         {
             _context = context;
-            this.host = hostweb;
+            env = host;
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
         }
 
@@ -44,6 +46,30 @@ namespace SistemaRH.Controllers
 
         // GET: Empleados
         public async Task<IActionResult> Index()
+        {
+            return View(await _context.empleados.ToListAsync());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index2(string busqueda, string fecha, DateTime start, DateTime end)
+        {
+            var nombres = from s in _context.empleados
+                          select s;
+            if (!String.IsNullOrEmpty(busqueda))
+            {
+                nombres = nombres.Where(s => s.Nombre.Contains(busqueda) || s.Departamento.Contains(busqueda) || s.Puesto.Contains(busqueda));
+            }
+            else
+            {
+                nombres = nombres.Where(s => s.Fecha_Ingreso >= start && s.Fecha_Ingreso <= end);
+
+            }
+            return View(await nombres.AsNoTracking().ToListAsync());
+        }
+
+        // GET: Empleados
+        public async Task<IActionResult> Index2()
         {
             return View(await _context.empleados.ToListAsync());
         }
@@ -226,16 +252,48 @@ namespace SistemaRH.Controllers
         {
             return _context.empleados.Any(e => e.Id == id);
         }
-        public IActionResult Imprimir()
+                
+        [HttpGet]
+        [Route("ExportEmpleado")]
+        public string Imprimir()
         {
-            string mintype = "";
-            int extension = 1;
-            var path = $"{ this.host.WebRootPath}\\Reports\\Report1.rdlc";
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters.Add("rp1", "RDLC");
-            LocalReport localReport = new LocalReport(path);
-            var result = localReport.Execute(RenderType.Pdf, extension, parameters, mintype);
-            return File(result.MainStream, "application/pdf");
+            string rootFolder = env.WebRootPath;
+            string fileName = @"ExportCustomers.xlsx";
+
+            FileInfo file = new FileInfo(Path.Combine(rootFolder, fileName));
+
+            using (ExcelPackage package = new ExcelPackage(file))
+            {
+
+                IList<Empleados> customerList = _context.empleados.ToList();
+
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Empleado");
+                int totalRows = customerList.Count();
+
+                worksheet.Cells[1, 2].Value = "Cedula";
+                worksheet.Cells[1, 3].Value = "Nombre";
+                worksheet.Cells[1, 4].Value = "Fecha_Ingreso";
+                worksheet.Cells[1, 5].Value = "Departamento";
+                worksheet.Cells[1, 6].Value = "Puesto";
+                worksheet.Cells[1, 7].Value = "Salario_Mensual";
+                int i = 0;
+                for (int row = 2; row <= totalRows + 1; row++)
+                {
+                    worksheet.Cells[row, 2].Value = customerList[i].Cedula;
+                    worksheet.Cells[row, 3].Value = customerList[i].Nombre;
+                    worksheet.Cells[row, 4].Value = customerList[i].Fecha_Ingreso;
+                    worksheet.Cells[row, 5].Value = customerList[i].Departamento;
+                    worksheet.Cells[row, 6].Value = customerList[i].Puesto;
+                    worksheet.Cells[row, 7].Value = customerList[i].Salario_Mensual;
+                    i++;
+                }
+
+                package.Save();
+
+            }
+
+            return " Customer list has been exported successfully";
         }
+
     }
 }

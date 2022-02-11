@@ -21,7 +21,7 @@ namespace SistemaRH.Data
         public DbSet<Departamentos> gestion_departamento { get; set; }
         public DbSet<Candidatos> gestion_candidatos { get; set; }
         public DbSet<Empleados> empleados { get; set; }
-
+                
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
