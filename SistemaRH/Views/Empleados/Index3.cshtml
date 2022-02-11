@@ -6,21 +6,25 @@
 
 <div class="text-center">
     <h4 class="card-title">Gestion de Empleados</h4>
+    <p>Realiza la busqueda o selecciona la fecha para realizar el reporte...</p>
 </div>
-<p>
-    <a asp-action="Create">Agregar empleado aceptado</a>&ensp;&ensp;<a asp-action="Index3">Generar Reporte</a>
-</p>
 
-<form asp-action="Index" method="post">
+<form asp-action="Index3" method="post">
     <div class="form-actions no-color d-flex justify-content-between">
-        <input type="search" name="busqueda" value="" class="form-control" placeholder="Buscar por nombre...">
+        <input type="search" name="busqueda" value="" class="form-control" placeholder="Buscar...">
         <input type="date" name="start" value="" class="form-control" placeholder="Fecha desde...">
         <input type="date" name="end" value="" class="form-control" placeholder="Fecha hasta...">
         <input type="submit" value="Buscar" class="btn btn-outline-success form-control" />
     </div>
 </form>
 
-<div class="table-responsive">
+@using (Html.BeginForm("Export", "Empleados", FormMethod.Post))
+{
+    <input type="hidden" name="GridHtml" />
+    <input type="submit" id="btnSubmit" value="Reporte o Exportar tabla..." />
+}
+
+<div class="table-responsive" id="Grid">
     <table class="table table-hover">
         <thead>
             <tr>
@@ -41,7 +45,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Estado)
                 </th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -49,6 +52,7 @@
             {
                 <tr>
                     <td>
+                        <a></a>
                         @Html.DisplayFor(modelItem => item.Cedula)
                     </td>
                     <td>
@@ -80,10 +84,6 @@
                             <i class="ti-arrow-down"></i>
                         </td>
                     }
-                    <td>
-                        <a class="btn btn-warning btn-rounded btn-fw" asp-action="Edit" asp-route-id="@item.Id" value="Editar">Editar</a>
-                        <a class="btn btn-danger btn-rounded btn-fw" asp-action="Delete" asp-route-id="@item.Id" value="Eliminar">Eliminar</a>
-                    </td>
                 </tr>
             }
         </tbody>
@@ -91,9 +91,9 @@
 </div>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
-        $(function () {
-            $("#btnSubmit").click(function () {
-                $("input[name='GridHtml']").val($("#Grid").html());
-            });
+    $(function () {
+        $("#btnSubmit").click(function () {
+            $("input[name='GridHtml']").val($("#Grid").html());
         });
+    });
 </script>
