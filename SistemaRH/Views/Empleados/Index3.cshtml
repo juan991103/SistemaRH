@@ -21,10 +21,15 @@
 @using (Html.BeginForm("Export", "Empleados", FormMethod.Post))
 {
     <input type="hidden" name="GridHtml" />
-    <input type="submit" id="btnSubmit" value="Reporte o Exportar tabla..." />
+    <input type="submit" id="btnSubmit" class="btn btn-outline-success form-control" value="Realizar reporte y exportar..." />
 }
 
 <div class="table-responsive" id="Grid">
+    <div class="text-success">
+        <h4 id="myH4" class="card-title">Reporte de empleados de nuevo ingreso - SistemaRH</h4>
+        <a id="myH42">Generado a las </a><a id="date"></a>
+        <br><br>        
+    </div>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -96,4 +101,15 @@
             $("input[name='GridHtml']").val($("#Grid").html());
         });
     });
+    document.getElementById("myH4").style.display = "none";
+    document.getElementById("myH42").style.display = "none";
+
+    n = new Date();
+    hr = n.getHours();
+    mn = n.getMinutes();
+    y = n.getFullYear();
+    m = n.getMonth() + 1;
+    d = n.getDate();
+    document.getElementById("date").innerHTML = hr + ":" + mn + ", en la fecha " + d + " del mes " + m + ", " + y + ".";
+    document.getElementById("date").style.display = "none"
 </script>

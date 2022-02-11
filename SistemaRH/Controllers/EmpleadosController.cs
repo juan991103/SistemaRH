@@ -106,7 +106,7 @@ namespace SistemaRH.Controllers
         [System.Web.Mvc.ValidateInput(false)]
         public FileResult Export(string GridHtml)
         {
-            return File(Encoding.ASCII.GetBytes(GridHtml), "application/vnd.ms-excel", "Grid.xls");
+            return File(Encoding.ASCII.GetBytes(GridHtml), "application/vnd.ms-excel", "Reporte-SistemaRH.xls");
         }
 
         // GET: Empleados/Details/5

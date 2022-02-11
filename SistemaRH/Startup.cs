@@ -56,7 +56,7 @@ namespace SistemaRH
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Admin}/{action=Index}/{id?}");
+                    pattern: "{controller=Empleados}/{action=Index3}/{id?}");
             });
         }
     }
